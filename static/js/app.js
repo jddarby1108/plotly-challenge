@@ -1,4 +1,4 @@
-// If using python server, visit here to see data: http://localhost:8000/data/data.json
+//If using python server, visit here to see data: http://localhost:8000/data/data.json
 var metaData = [];
 
 console.log('test');
@@ -25,27 +25,23 @@ d3.json("data/samples.json").then((data) => {
     console.log(samples);
 });
 
+
+
 function optionChanged(selectedID) {
     console.log(selectedID);
     var metaDataSelector = metaData.filter(oneMeta => oneMeta.id === parseInt(selectedID))[0];
     console.log(metaDataSelector);
+    var panel = d3.select("#panel-info")
+
+    // /remove any data from the table
+    panel.html("");
+
+
+    var list = panel.append('ul')
     Object.entries(metaDataSelector).forEach(([key, value]) => {
         console.log(key, value);
-        var panel = d3.select("#panel-info");
-        panel.append('tr')
+        list.append('li')
             .text(`${key}: ${value}`);
+        console.log(key, value);
     });
 };
-
-/* function callbackFun(){
-
-}
-
-metaData.map(oneEle=>{
-    //instructions
-    return oneEle.otuid
-})
-
-metaData.map(oneEle=>callbackFunc(oneElem))
-metaData.map(callbackFunc) */
-// [{id: '940', otuid: '123'}, {id: '941', otuid: '123'}]
