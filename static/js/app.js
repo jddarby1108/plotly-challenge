@@ -56,15 +56,15 @@ function optionChanged(selectedID) {
     var sortSample = sampleSelector.sort((a, b) => b.sample_values - a.sample_values);
     // console.log(sortSample);
     // Slice the first 10 objects for plotting
-    SampleValues = sortSample[0].sample_values;
-    SampleIds = sortSample[0].otu_ids;
-    SampleLabels = sortSample[0].otu_labels;
+    sampleValues = sortSample[0].sample_values;
+    sampleIds = sortSample[0].otu_ids;
+    sampleLabels = sortSample[0].otu_labels;
     console.log(sortSample);
 
-    sliceValues = SampleValues.slice(0, 10).reverse();
-    sliceIds = SampleIds.slice(0, 10).reverse();
-    sliceLabels = SampleLabels.slice(0, 10).reverse();
-    console.log(sliceSampleValues);
+    sliceValues = sampleValues.slice(0, 10).reverse();
+    sliceIds = sampleIds.slice(0, 10).reverse();
+    sliceLabels = sampleLabels.slice(0, 10).reverse();
+    console.log(sliceValues);
 
 
     // Trace1 for the Belly Button Data
@@ -89,27 +89,28 @@ function optionChanged(selectedID) {
             b: 100
         }
     };
-// Render the plot to the div tag with id "bubble"
+    // Render the plot to the div tag with id "bubble"
     Plotly.newPlot("bar", sliceSampleValues, layout);
 
     var trace1 = {
-        x: SampleValues,
-        y: SampleIds,
+        x: sampleValues,
+        y: sampleIds,
+        text: sampleLabels,
         mode: 'markers',
         marker: {
-            size: SampleValues
+            color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)', 'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
+            opacity: [1, 0.8, 0.6, 0.4],
+            size: sampleValues
         }
     };
 
-    var SampleValues = [trace1];
+    var sampleValues = [trace1];
 
     var layout = {
-        title: 'Marker Size',
-        showlegend: true,
-        height: 600,
-        width: 600
+        title: 'Belly Button Total Sample Data',
+        showlegend: false
     };
 
     // Render the plot to the div tag with id "bubble"
-     Plotly.newPlot('bubble', SampleValues, layout);
+    Plotly.newPlot('bubble', sampleValues, layout);
 };
