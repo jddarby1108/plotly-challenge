@@ -1,8 +1,7 @@
 //If using python server, visit here to see data: http://localhost:8000/data/data.json
 var metaData = [];
 var samples = [];
-var sampleId = [];
-var sampleValues = [];
+
 
 // console.log('test');
 d3.json("data/samples.json").then((data) => {
